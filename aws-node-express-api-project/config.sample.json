@@ -1,0 +1,40 @@
+{
+  "pubsubType": "pubnub",
+  "pubnub": {
+    "subscribeKey": "",
+    "publishKey": "",
+    "secretKey": "",
+    "channel": "cactuspi"
+  },
+  "mqtt": {
+    "brokerUrl": "mqtt://your-url:8080",
+    "topic": "ledmatrix/cactuspi"
+  },
+  "plugins": {
+    "weather": {
+      "enabled": true,
+      "apiKey": "",
+      "city": "",
+      "unit": ""
+    },
+    "bustime": {
+      "enabled": true,
+      "apiKey": "",
+      "default": "",
+      "options": {
+        "busstop": {
+          "directionRef": 0,
+          "maximumStopVisits": 3,
+          "monitoringRef": 12345,
+          "lineRef": ""
+        }
+      }
+    },
+    "alphavantage": {
+      "enabled": true,
+      "apikey": "",
+      "functionName": "",
+      "symbol": ""
+    }
+  }
+}
