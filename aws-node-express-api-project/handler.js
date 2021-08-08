@@ -35,10 +35,21 @@ pluginServices.forEach(({ name, service, options }) => {
     plugin.init();
   }
 
-  app.get(`/${name}/:param?`, async (req, res) => {
-    const { message, metadata } = await plugin.fetch(req, res);
-    publisher.publish(message, metadata);
-    return res.status(200).json({ message });
+  app.get(`/${name}/:param?`, (req, res) => {
+    plugin.fetch(
+      (message, metadata) => {
+        publisher.publish(message, metadata);
+
+        return res.status(200).json({ message });
+      },
+      (error) => {
+        res.status(500).json({
+          name: `Plugin Error: ${name}`,
+          error,
+        });
+      },
+      req
+    );
   });
 });
 
